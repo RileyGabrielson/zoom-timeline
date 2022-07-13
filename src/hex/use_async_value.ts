@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import { ObservableValue } from "../hex/observable_value";
+import { ReadonlyObservableValue } from "../hex/observable_value";
 
 const updateReducer = (num: number): number => (num + 1) % 1_000_000;
 
@@ -8,7 +8,7 @@ export const useUpdate = () => {
   return update as () => void;
 };
 
-export function useAsyncValue<T>(observable: ObservableValue<T>) {
+export function useAsyncValue<T>(observable: ReadonlyObservableValue<T>) {
   const update = useUpdate();
   useEffect(() => {
     const unsubscribe = observable.onChange(update);

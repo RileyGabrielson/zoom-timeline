@@ -38,3 +38,9 @@ export class ObservableValue<T> {
     this.callbacks = {};
   }
 }
+
+export interface ReadonlyObservableValue<T> {
+  getValue: () => T;
+  onChange: (callback: (v: T) => void) => () => void;
+  unsubscribe: (id: string) => void;
+}
